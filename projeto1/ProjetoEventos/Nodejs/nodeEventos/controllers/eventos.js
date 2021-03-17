@@ -23,8 +23,12 @@ module.exports = function (app) {
             var usuario = request.session.usuario,
             params = { usuario: usuario }; 
             response.render('eventos/listaEventos', params);
+        },
+
+        novoEvento: function (request, response) {
+            //código a ser implementado
+            response.redirect('/menu'); }
         }
-    }
 
     return EventosController;
 }
