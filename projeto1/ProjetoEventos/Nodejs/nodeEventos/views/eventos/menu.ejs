@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Cadastro de Eventos e Convidados - Menu de Opções</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+    <header>
+        <p>Bem-vindo,
+            <%= usuario.nome %>
+        </p>
+        <h1>Menu de Opções</h1>
+        <h4>Escolha sua opção</h4>
+    </header>
+    <section>
+        <ul>
+            <li>
+                <a href="/cadUsuario">Cadastro de Usuários</a>
+            </li>
+            <li>
+                <a href="/cadEvento">Cadastro de Eventos</a>
+            </li>
+            <li>
+                <a href="/listaEventos">Lista de Eventos</a>
+            </li>
+        </ul>
+    </section>
+    <section>
+        <a href='/logout'>Logout</a>
+    </section>
+    <footer>
+        <small>Sistema de Cadastro de Eventos e Convidados</small>
+    </footer>
+</body>
+
+</html>

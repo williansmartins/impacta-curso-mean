@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Cadastro de Eventos e Convidados - Login</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+    <header>
+        <h1>Login</h1>
+        <h4>Entre com suas credenciais</h4>
+    </header>
+    <section>
+        <form action="/login" method="post">
+            Nome: <br />
+            <input type="text" name="usuario[nome]" />
+            <br> Senha: <br />
+            <input type="password" name="usuario[senha]" />
+            <br>
+            <button type="submit">Login</button>
+        </form>
+    </section>
+    <footer>
+        <small>Sistema de Cadastro de Eventos e Convidados</small>
+    </footer>
+</body>
+
+</html>
