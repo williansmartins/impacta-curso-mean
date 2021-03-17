@@ -1,18 +1,28 @@
-module.exports = function(app){
+module.exports = function (app) {
     var EventosController = {
-        menu: function(request, response){
+        menu: function (request, response) {
             var usuario = request.session.usuario;
 
-            console.info(">>>>>>>>>>>");
-            console.info(usuario);
+            var params = { usuario: usuario };
+            response.render('eventos/menu', params);
 
-            if(usuario == undefined){
-                response.render('home/index');
-            }else{
-                var params = {usuario : usuario};
-                response.render('eventos/menu', params);
-            }
+        },
 
+        cadastroUsuario: function (request, response) {
+            var usuario = request.session.usuario,
+            params = { usuario: usuario }; 
+            response.render('eventos/cadUsuario', params);
+        },
+
+        cadastroEvento: function (request, response) {
+            var usuario = request.session.usuario, params = { usuario: usuario };
+            response.render('eventos/cadEvento', params);
+        },
+
+        listaEventos: function (request, response) {
+            var usuario = request.session.usuario,
+            params = { usuario: usuario }; 
+            response.render('eventos/listaEventos', params);
         }
     }
 

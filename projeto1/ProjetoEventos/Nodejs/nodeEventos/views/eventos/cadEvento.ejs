@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Cadastro de Eventos e Convidados</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+    <header>
+        <p>Bem-vindo, <%= usuario.nome %>
+        </p>
+        <h1>Cadastro de Eventos</h1>
+        <h4>Forneça os dados para o cadastro</h4>
+    </header>
+    <section>
+        <form action="/novoEvento" method="post"> Descrição:
+            <br />
+            <input type="text" name="evento[descricao]"> <br> Data:
+            <br />
+            <input type="date" name="evento[data]"> <br> Preço:
+            <br />
+            <input type="text" name="evento[preco]"> <br>
+            <button type="submit">Enviar</button>
+        </form>
+    </section>
+    <footer>
+        <small>Sistema de Cadastro de Eventos e Convidados</small>
+    </footer>
+</body>
+
+</html>

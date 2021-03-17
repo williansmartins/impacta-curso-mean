@@ -1,6 +1,6 @@
 var express = require('express');
 var load = require('express-load');
-var bodyParser = require('body-parser');
+
 var cookieParser = require('cookie-parser');
 var expressSession = require('express-session');
 
@@ -11,8 +11,8 @@ app.set('view engine','ejs');
 
 app.use(cookieParser('nodeEventos'));
 app.use(expressSession());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static( __dirname + '/public'));
 
