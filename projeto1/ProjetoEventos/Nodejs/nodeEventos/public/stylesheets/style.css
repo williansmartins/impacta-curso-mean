@@ -1,8 +1,23 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  
 }
 
 a {
   color: #00B7FF;
+}
+
+section#login{
+  outline: solid 1px #b1b1b1;
+  padding: 21px;
+  margin: 0 auto;
+}
+
+footer{
+  margin-top: 20px;
+}
+
+body, section, footer{
+  width: 450px;
 }
