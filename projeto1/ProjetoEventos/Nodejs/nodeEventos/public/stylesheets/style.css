@@ -17,3 +17,8 @@ section#login{
 footer{
   margin-top: 20px;
 }
+
+#wrapper{
+  width: 360px;
+  margin: 0 auto;
+}
