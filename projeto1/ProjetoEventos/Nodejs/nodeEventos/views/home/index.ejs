@@ -9,26 +9,28 @@
 </head>
 
 <body>
-    <header>
-        <h1>Login</h1>
-        <h4>Entre com suas credenciais</h4>
-    </header>
-    <section id="login">
-        <form action="/login" method="post">
-            <div class="mb-3">
-                <label class="form-label">Nome:</label>
-                <input type="text" class="form-control" name="usuario[nome]" />
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Senha:</label>
-                <input type="password" class="form-control" name="usuario[senha]" />
-            </div>
-            <button type="submit" class="btn btn-primary">Login</button>
-        </form>
-    </section>
-    <footer>
-        <div class="alert alert-primary">Sistema de Cadastro de Eventos e Convidados</div>
-    </footer>
+    <div class="wrapper">
+        <header>
+            <h1>Login</h1>
+            <h4>Entre com suas credenciais</h4>
+        </header>
+        <section id="login">
+            <form action="/login" method="post">
+                <div class="mb-3">
+                    <label class="form-label">Nome:</label>
+                    <input type="text" class="form-control" name="usuario[nome]" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Senha:</label>
+                    <input type="password" class="form-control" name="usuario[senha]" />
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+        </section>
+        <footer>
+            <div class="alert alert-primary">Sistema de Cadastro de Eventos e Convidados</div>
+        </footer>
+    </div>
 </body>
 
 </html>
