@@ -12,7 +12,7 @@ global.db = mongoose.connect('mongodb://localhost:27017/contatos');
 
 load('models').into(app);
 
-// var Contato = app.models.contato;
+var Contato = app.models.contato;
 
 app.listen('3000', function(){
   console.info("Servidor no ar!");
@@ -23,10 +23,68 @@ app.get('/', function(request, response){
 })
 
 app.get('/contatos', function(request, response){
-  response.send('contatos');
+  Contato.find(function(erro, contato){
+    if(erro){
+      console.info("Erro: " + erro);
+      response.send(erro);
+    }else{
+      console.info(contato);
+      response.send(contato);
+    }
+  });
 })
 
 app.get('/contatos/:id', function(request, response){
-  var id = request.query.id;
-  response.send('contatos -->' + id);
+  var id = request.params.id;
+  
+  Contato.findById(id, function(erro, contato){
+    if(erro){
+      console.info("Erro: " + erro);
+      response.send(erro);
+    }else{
+      console.info(contato);
+      response.send(contato);
+    }
+  });
+  
+})
+
+app.post('/contatos', function(request, response){
+  var cpf = request.body.cpf;
+  var nome = request.body.nome;
+  var telefone = request.body.telefone;
+
+  var contato = {
+    'cpf': cpf,
+    'nome': nome,
+    'telefone': telefone
+  }
+  
+  Contato.create(contato, function(erro, contato){
+    if(erro){
+      console.info("Erro: " + erro);
+      response.send(erro);
+    }else{
+      console.info(contato);
+      response.send(contato);
+    }
+  });
+  
+})
+
+app.delete('/contatos/:id', function(request, response){
+  var id = request.params.id;
+
+  console.info(">>>>>>" + id);
+  
+  Contato.remove(id, function(erro, contato){
+    if(erro){
+      console.info("Erro: " + erro);
+      response.send(erro);
+    }else{
+      console.info(contato);
+      response.send('removido');
+    }
+  });
+  
 })
