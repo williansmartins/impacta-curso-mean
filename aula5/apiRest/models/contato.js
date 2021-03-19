@@ -1,11 +1,11 @@
 module.exports = function(app){
-    var Schema = require('mongoose').Schema;
+    var mongoose = require('mongoose');
 
-    var contato = Schema({
+    var contato = mongoose.Schema({
         cpf: String,
         nome: String,
         telefone: String
     });
 
-    return db.model('contatos', contato);
+    return mongoose.model('contatos', contato);
 }

@@ -18,6 +18,15 @@ app.listen('3000', function(){
   console.info("Servidor no ar!");
 })
 
-// app.get('/', function(request, response){
-//   response.send('Servidor no ar');
-// })
+app.get('/', function(request, response){
+  response.send('Servidor no ar');
+})
+
+app.get('/contatos', function(request, response){
+  response.send('contatos');
+})
+
+app.get('/contatos/:id', function(request, response){
+  var id = request.query.id;
+  response.send('contatos -->' + id);
+})
