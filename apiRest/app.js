@@ -7,7 +7,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 var mongoose = require('mongoose');
-global.db = mongoose.connect('mongodb://localhost:27017/contatos');
+global.db = mongoose.connect('mongodb://localhost:27017/contatos', { useUnifiedTopology: true, useNewUrlParser: true });
 
 load('models').into(app);
 
@@ -65,19 +65,23 @@ app.post('/eventos', function (request, response) {
 
 app.put('/eventos/:id', function (request, response) {
   var id = request.params.id;
+
   Evento.findById(id, function (erro, evento) {
     if (erro) {
       response.json(erro);
     }
-    else {
+    else { 
       var evento_upd = evento;
-      evento_upd.descricao = request.body.descricao; evento_upd.data = request.body.data; evento_upd.preco = request.body.preco;
+      evento_upd.descricao = request.body.descricao; 
+      evento_upd.data = request.body.data; 
+      evento_upd.preco = request.body.preco; 
+
       evento_upd.save(function (erro, evento) {
         if (erro) {
           response.json(erro);
         }
         else {
-          response.json(evento);
+          response.json(evento);  
         }
       });
       response.json(evento);
