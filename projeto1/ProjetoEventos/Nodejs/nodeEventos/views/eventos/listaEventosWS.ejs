@@ -35,6 +35,11 @@
                         <td>
                             <%= evento.preco %>
                         </td>
+                        <td>
+                            <a href=
+                            "/pagamento/<%= evento.descricao %>/<%= evento.preco %>">
+                                         comprar este evento</a>
+                        </td>
                     </tr>
                     <% }) %>
             </tbody>

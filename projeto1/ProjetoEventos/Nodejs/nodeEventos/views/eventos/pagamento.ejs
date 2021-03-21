@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Pagamento de Eventos</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+    <header>
+        <p>Bem-vindo, <%= usuario.nome %>
+        </p>
+        <h1>Compra de Eventos</h1>
+        <h4>Preencha os dados com seu cartão</h4>
+    </header>
+    <section>
+        <form action="/novoPagamento" method="post">
+            Evento:<br />
+            <input type="text" name="cartao[evento]" value="<%= evento %>" /> <br />Preço:<br />
+            <input type="text" name="cartao[preco]" value="<%= preco %>" /> <br> Num. Cartão:<br />
+            <input type="text" name="cartao[numcartao]" />
+            <br> CVV: <br />
+            <input type="text" name="cartao[cvv]" />
+            <br>
+            <button type="submit">Efetuar Pagamento</button>
+        </form>
+    </section>
+    <footer>
+        <small>Sistema de Cadastro de Eventos e Convidados</small>
+    </footer>
+</body>
+
+</html>

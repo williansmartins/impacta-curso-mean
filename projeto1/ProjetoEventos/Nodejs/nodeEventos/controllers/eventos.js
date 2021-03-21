@@ -68,6 +68,40 @@ module.exports = function (app) {
                 });
             }).end();
         },
+
+        pagamento: function (request, response) {
+            var evento = request.params.evento, preco = request.params.preco,
+            usuario = request.session.usuario,
+            params = { usuario: usuario, evento: evento, preco: preco };
+            response.render('eventos/pagamento', params);
+        },
+        novoPagamento: function (request, response) { 
+            var cartao = request.body.cartao;
+            var cartaoPost = JSON.stringify({
+                'evento': cartao.evento, 'preco': cartao.preco, 'numcartao': cartao.numcartao, 'cvv': cartao.cvv
+            });
+            //informações da requisição POST
+            var info = {
+                host: 'localhost', port: '3200',
+                path: '/pagamentos', method: 'POST', headers: {
+                    'Content-Type': 'application/json',
+                    'Content-Length': cartaoPost.length
+                }
+            };
+
+            //definição do pbjeto para requisição POST
+            var reqPost = http.request(info, function (res) {
+                res.on('data', function (data) {
+                    console.log('Incluindo registros:\n'); process.stdout.write(data); console.log('\n\nHTTP POST Concluído');
+                });
+            });
+            //Gravação dos dados
+            reqPost.write(cartaoPost); response.redirect('/menu'); reqPost.end();
+            reqPost.on('error', function (e) {
+                console.error(e);
+            });
+
+        },
     }
     return EventosController;
 }

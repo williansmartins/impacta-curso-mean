@@ -12,13 +12,14 @@ global.db = mongoose.connect('mongodb://localhost:27017/neventos', { useUnifiedT
 load('models').into(app);
 
 var Evento = app.models.eventos;
+var Pagamento = app.models.pagamentos;
 
-app.listen('3200', function(){
+app.listen('3200', function () {
   console.log('Servidor iniciado!');
 })
 
 app.get('/', function (request, response) {
-  response.send('Servidor no ar'); 
+  response.send('Servidor no ar');
 });
 
 app.get('/eventos', function (request, response) {
@@ -71,18 +72,18 @@ app.put('/eventos/:id', function (request, response) {
     if (erro) {
       response.json(erro);
     }
-    else { 
+    else {
       var evento_upd = evento;
-      evento_upd.descricao = request.body.descricao; 
-      evento_upd.data = request.body.data; 
-      evento_upd.preco = request.body.preco; 
+      evento_upd.descricao = request.body.descricao;
+      evento_upd.data = request.body.data;
+      evento_upd.preco = request.body.preco;
 
       evento_upd.save(function (erro, evento) {
         if (erro) {
           response.json(erro);
         }
         else {
-          response.json(evento);  
+          response.json(evento);
         }
       });
     }
@@ -103,6 +104,35 @@ app.delete('/eventos/:id', function (request, response) {
           response.send('removido');
         }
       });
+    }
+  });
+});
+
+app.get('/pagamentos', function (request, response) {
+  Pagamento.find(function (erro, pagamento) {
+    if (erro) {
+      response.json(erro);
+    }
+    else {
+      response.json(pagamento);
+    }
+  });
+});
+
+app.post('/pagamentos', function (request, response) {
+  var evento = request.body.evento;
+  var preco = request.body.preco;
+  var numcartao = request.body.numcartao; var cvv = request.body.cvv;
+  var pagamento = {
+    'evento': evento, 'preco': preco, 'numcartao': numcartao, 'cvv': cvv
+  };
+
+  Pagamento.create(pagamento, function (erro, pagto) {
+    if (erro) {
+      response.json(erro);
+    }
+    else {
+      response.json(pagto);
     }
   });
 });
