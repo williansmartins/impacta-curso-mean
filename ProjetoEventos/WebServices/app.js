@@ -1,10 +1,19 @@
 var express = require('express');
 var load = require('express-load');
 var bodyParser = require('body-parser');
+var cors = require('cors');
 
 var app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+app.use(cors());
+
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 var mongoose = require('mongoose');
 global.db = mongoose.connect('mongodb://localhost:27017/neventos', { useUnifiedTopology: true, useNewUrlParser: true });
