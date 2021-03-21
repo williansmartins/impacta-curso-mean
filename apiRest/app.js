@@ -7,22 +7,23 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 var mongoose = require('mongoose');
-global.db = mongoose.connect('mongodb://localhost:27017/contatos', { useUnifiedTopology: true, useNewUrlParser: true });
+global.db = mongoose.connect('mongodb://localhost:27017/neventos', { useUnifiedTopology: true, useNewUrlParser: true });
 
 load('models').into(app);
 
 var Evento = app.models.eventos;
 
-app.listen('3000', function(){
+app.listen('3200', function(){
   console.log('Servidor iniciado!');
 })
 
 app.get('/', function (request, response) {
-  response.send('Servidor no ar');
+  response.send('Servidor no ar'); 
 });
 
 app.get('/eventos', function (request, response) {
   Evento.find(function (erro, eventos) {
+    console.info(eventos);
     if (erro) {
       response.json(erro);
     }
@@ -84,7 +85,6 @@ app.put('/eventos/:id', function (request, response) {
           response.json(evento);  
         }
       });
-      response.json(evento);
     }
   });
 });

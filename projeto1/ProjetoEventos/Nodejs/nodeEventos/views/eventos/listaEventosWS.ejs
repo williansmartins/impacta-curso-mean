@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Cadastro de Eventos</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+    <header>
+        <p>Bem-vindo, <%= usuario.nome %>
+        </p>
+        <h1>Lista de Eventos do Webservice</h1>
+    </header>
+    <section>
+        <!--será implementado em breve-->
+        <table>
+            <thead>
+                <tr>
+                    <th>Descrição</th>
+                    <th>Data</th>
+                    <th>Preço</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% eventos.forEach(function(evento, index) { %>
+                    <tr>
+                        <td>
+                            <%= evento.descricao %>
+                        </td>
+                        <td>
+                            <%= evento.data %>
+                        </td>
+                        <td>
+                            <%= evento.preco %>
+                        </td>
+                    </tr>
+                    <% }) %>
+            </tbody>
+        </table>
+    </section>
+    <section>
+        <a href='/menu'>Voltar ao menu</a>
+    </section>
+    <footer>
+        <small>Sistema de Cadastro de Eventos e Convidados</small>
+    </footer>
+</body>
+
+</html>
