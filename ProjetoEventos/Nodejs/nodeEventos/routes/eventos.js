@@ -1,6 +1,6 @@
 module.exports = function(app){
     var eventos = app.controllers.eventos;
-    var valida = require('./../middlewares/valida');
+    var valida = require('../middlewares/valida');
 
     app.get('/menu', eventos.menu);
     app.get('/cadUsuario', valida, eventos.cadastroUsuario); 
