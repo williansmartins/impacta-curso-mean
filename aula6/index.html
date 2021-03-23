@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>...</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script>
+        var app = angular.module('moduloX', []);
+        
+        app.controller('Controler1', function($scope){
+
+            console.log(123);
+
+            var self = this;
+            self.a = 10;    
+
+            self.filhos = ['filho1', 'filho2', 'filho3', 'filho4', 'filho5', 'filho6'];
+            self.familia = [
+                {
+                    "nome": "joao",
+                    "idade": 11,
+                    "sexo": "masculino"
+                },
+                {
+                    "nome": "maria",
+                    "idade": 22,
+                    "sexo": "feminino"
+                },
+                {
+                    "nome": "Carla",
+                    "idade": 45,
+                    "sexo": "feminino"
+                },{
+                    "nome": "Batista",
+                    "idade": 34,
+                    "sexo": "feminino"
+                },
+                {
+                    "nome": "Maravilha",
+                    "idade": 99,
+                    "sexo": "masculino"
+                }
+            ]
+
+            self.mostrarMensagem = function(){
+                self.b = self.a;
+            }
+        });
+
+        
+    </script>
+    <style>
+        .integrante{
+            width: 200px;
+            height: 50px;
+            /* outline: solid 1px red; */
+            margin: 10px;
+            position: relative;
+            background-color: #00a6ff;
+            list-style: none;
+            padding: 13px;
+        }
+
+        .idade{
+            /* outline: solid 1px green; */
+            position: absolute;
+            top: 1px;
+            right: 0px;
+            padding: 5px;
+            background: green;
+            color: white;
+        }
+
+        .sexo{
+            /* outline: solid 1px purple; */
+        }
+
+        .nome{
+            /* outline: solid 1px blue; */
+            font-size: 28px;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body ng-app="moduloX" ng-controller="Controler1 as ctrl">
+    <h1>AngularJS</h1>
+    <input ng-model="ctrl.a"/>
+    <input ng-model="ctrl.b"/>
+    
+
+    <button ng-click="ctrl.mostrarMensagem()">clica em mim!</button>
+
+    
+    <h3>Filhos</h3>
+    <ul>
+        <li class="estilo" ng-repeat="filho in ctrl.filhos">{{filho}}</li>
+    </ul>
+
+    <h3>Familia</h3>
+    <ul>
+        <li class="integrante" ng-repeat="integrante in ctrl.familia">
+            <span class="nome">{{integrante.nome}}</span>
+            <span class="sexo">({{integrante.sexo}})</span>
+            <span class="idade">{{integrante.idade}}</span>
+        </li>
+    </ul>
+
+    <h3>Familia 2</h3>
+    <div class="integrante" ng-repeat="integrante in ctrl.familia">
+        <span class="nome">{{integrante.nome}}</span>
+        <span class="sexo">({{integrante.sexo}})</span>
+        <span class="idade">{{integrante.idade}}</span>
+    </div>
+</body>
+</html>
