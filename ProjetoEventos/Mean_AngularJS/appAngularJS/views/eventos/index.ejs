@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app>
+<html ng-app="appAngular">
 
 <head>
     <meta charset="UTF-8">
@@ -7,12 +7,55 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <title>Aplicação AngularJS</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script type="text/javascript"> 
+        angular.module("appAngular", [])
+            .controller('Principal', ['$http', function ($http) {
+                var self = this;
+                self.items = [];
+
+                var listarTodos = function () {
+                    return $http.get('http://localhost:3200/eventos/')
+                        .then(function (response) {
+                            self.items = response.data;
+                        }, function (error) {
+                            alert('Erro reportado: ' + error);
+                        });
+                };
+                
+                listarTodos();
+            }]);
+    </script>
+    <style>
+        table,
+        tr,
+        td,
+        th {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px;
+        }
+    </style>
 </head>
 
-<body>
+<body ng-controller="Principal as ctl">
     <h1>Cadastro e Consulta de Eventos</h1>
-    <input type="text" ng-model="yourName" placeholder="Enter a name here">
-    <h1>Hello {{yourName}}!</h1>
+    <h2>Lista de eventos</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Descrição</th>
+                <th>Data</th>
+                <th>Preço</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="evento in ctl.items">
+                <td>{{evento.descricao}}</td>
+                <td>{{evento.data}}</td>
+                <td>{{evento.preco}}</td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 
 </html>
