@@ -12,6 +12,7 @@
             .controller('Principal', ['$http', function ($http) {
                 var self = this;
                 self.items = [];
+                self.novoEvento = {};
 
                 var listarTodos = function () {
                     return $http.get('http://localhost:3200/eventos/')
@@ -20,6 +21,25 @@
                         }, function (error) {
                             alert('Erro reportado: ' + error);
                         });
+                };
+
+                self.adicionar = function () {
+                    $http({
+                        url: 'http://localhost:3200/eventos/',
+                        method: 'POST',
+                        data: self.novoEvento,
+                        headers: { 'Content-Type': 'application/json' }
+                    }).then(function (response) {
+                        self.novoEvento = {};
+
+                        if(response.data._id == undefined){
+                            alert("Erro ao cadastrar um evento");
+                        }else{
+                            alert("Sucesso ao cadastrar um evento");
+                        }
+                    }, function (error) {
+                        alert('Erro reportado: ' + error);
+                    }).then(listarTodos);
                 };
 
                 listarTodos();
@@ -56,6 +76,18 @@
             </tr>
         </tbody>
     </table>
+
+     
+    <h2>Inclusão de um novo evento</h2>
+    <div>
+        <form name="incluirForm" ng-submit="ctl.adicionar()"> 
+            Descriçãodo evento:<br />
+            <input type="text" ng-model="ctl.novoEvento.descricao" /> <br />Data (dd/mm/yyyy):<br />
+            <input type="date" ng-model="ctl.novoEvento.data" /> <br />Preço:<br />
+            <input type="text" ng-model="ctl.novoEvento.preco" /> <br />
+            <input type="submit" value="Adicionar" />
+        </form>
+    </div>
 </body>
 
 </html>
