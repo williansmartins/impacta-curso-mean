@@ -101,11 +101,14 @@ app.put('/eventos/:id', function (request, response) {
 
 app.delete('/eventos/:id', function (request, response) {
   var id = request.params.id;
+
+
   Evento.findById(id, function (erro, evento) {
     if (erro) {
       response.json(erro);
     } else {
-      Evento.remove(evento, function (erro, evento) {
+      // response.json(evento);
+      Evento.deleteOne(evento, function (erro, evento) {
         if (erro) {
           response.json(erro);
         }
