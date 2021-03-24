@@ -4,9 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <title>Aplicação AngularJS</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+
     <script type="text/javascript"> 
         angular.module("appAngular", [])
             .controller('Principal', ['$http', function ($http) {
@@ -19,11 +22,53 @@
                         .then(function (response) {
                             self.items = response.data;
                         }, function (error) {
-                            alert('Erro reportado: ' + error);
+                            console.info('Erro reportado: ' + error);
                         });
                 };
 
-                self.adicionar = function () {
+                self.salvar = function () {
+                    
+                    if(self.novoEvento._id == undefined){
+                        inserir();
+                    }else {
+                        atualizar();
+                    }
+
+                    
+                };
+
+                listarTodos();
+
+                self.excluir = function(id){
+                    
+                    $http({
+                        url: 'http://localhost:3200/eventos/'+id,
+                        method: 'DELETE',
+                        data: self.novoEvento,
+                        headers: { 'Content-Type': 'application/json' }
+                    }).then(function (response) {
+                        console.info(response);
+
+                        // if(response.data._id == undefined){
+                        //     console.info("Erro ao excluir um evento");
+                        // }else{
+                        //     console.info("Sucesso ao excluir um evento");
+                        // }
+                    }, function (error) {
+                        console.info('Erro reportado: ' + error);
+                    }).then(listarTodos);
+                }
+
+                self.prepararAtualizacao = function(evento){
+                    console.info(evento);
+                    if(evento.data != null){
+                        evento.data = new Date(evento.data);
+                    }
+
+                    self.novoEvento = evento;
+                };
+
+                var inserir = function(){
                     $http({
                         url: 'http://localhost:3200/eventos/',
                         method: 'POST',
@@ -33,26 +78,43 @@
                         self.novoEvento = {};
 
                         if(response.data._id == undefined){
-                            alert("Erro ao cadastrar um evento");
+                            console.info("Erro ao cadastrar um evento");
                         }else{
-                            alert("Sucesso ao cadastrar um evento");
+                            console.info("Sucesso ao cadastrar um evento");
                         }
                     }, function (error) {
-                        alert('Erro reportado: ' + error);
+                        console.info('Erro reportado: ' + error);
                     }).then(listarTodos);
-                };
+                }
 
-                listarTodos();
+                var atualizar = function(){
+                    $http({
+                        url: 'http://localhost:3200/eventos/'+self.novoEvento._id,
+                        method: 'PUT',
+                        data: self.novoEvento,
+                        headers: { 'Content-Type': 'application/json' }
+                    }).then(function (response) {
+                        self.novoEvento = {};
+
+                        console.info("Sucesso ao atualizar um evento");
+
+                        // if(response.data._id == undefined){
+                        //     console.info("Erro ao atualizar um evento");
+                        // }else{
+                        //     console.info("Sucesso ao atualizar um evento");
+                        // }
+                    }, function (error) {
+                        console.info('Erro reportado: ' + error);
+                    }).then(listarTodos);
+                }
             }]);
     </script>
     <style>
-        table,
-        tr,
-        td,
-        th {
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin: 10px;
+        .editar, .excluir{
+            width: 16px;
+        }
+        a{
+            text-decoration: none;
         }
     </style>
 </head>
@@ -60,19 +122,30 @@
 <body ng-controller="Principal as ctl">
     <h1>Cadastro e Consulta de Eventos</h1>
     <h2>Lista de eventos!</h2>
-    <table>
+    <table class="table table-striped">
         <thead>
             <tr>
+                <th class="d-none">ID</th>
                 <th>Descrição</th>
                 <th>Data</th>
                 <th>Preço</th>
+                <th>Ação</th>
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="evento in ctl.items">
-                <td>{{evento.descricao}}</td>
-                <td>{{evento.data}}</td>
-                <td>{{evento.preco}}</td>
+            <tr ng-repeat="evento in ctl.items | orderBy:'descricao'">
+                <td class="d-none">{{evento._id}}</td>
+                <td>{{evento.descricao | uppercase}}</td>
+                <td>{{evento.data | date:'dd/MM/yyyy'}} as {{evento.data | date:'HH'}} horas</td>
+                <td>{{evento.preco | currency:'R$ ' }}</td>
+                <td>
+                    <a href="javascript:void(0)" ng-click="ctl.excluir(evento._id)">
+                        <img class="excluir" src="https://image.flaticon.com/icons/png/128/73/73806.png" alt="">
+                    </a> 
+                    <a href="javascript:void(0)" ng-click="ctl.prepararAtualizacao(evento)">
+                        <img class="editar" src="https://image.flaticon.com/icons/png/128/1014/1014842.png" alt="">
+                    </a> 
+                </td>
             </tr>
         </tbody>
     </table>
@@ -80,12 +153,43 @@
      
     <h2>Inclusão de um novo evento</h2>
     <div>
-        <form name="incluirForm" ng-submit="ctl.adicionar()"> 
-            Descriçãodo evento:<br />
-            <input type="text" ng-model="ctl.novoEvento.descricao" /> <br />Data (dd/mm/yyyy):<br />
-            <input type="date" ng-model="ctl.novoEvento.data" /> <br />Preço:<br />
-            <input type="text" ng-model="ctl.novoEvento.preco" /> <br />
-            <input type="submit" value="Adicionar" />
+        <!-- Button trigger modal -->
+        <button id="myInput" type="button" class="d-none btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            Launch demo modal
+        </button>
+        <!-- Modal -->
+        <div class="modal fade d-none" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                ...
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+            </div>
+        </div>
+        <form name="incluirForm" ng-submit="ctl.salvar()"> 
+            Descrição do evento:<br />
+            <input class="
+            form-control" type="text" ng-model="ctl.novoEvento.descricao" /> <br />
+            
+            Data (dd/mm/yyyy):<br />
+            <input class="
+            form-control" type="date" ng-model="ctl.novoEvento.data" /> <br />
+            Preço:<br />
+            
+            <input class="
+            form-control" type="text" ng-model="ctl.novoEvento.preco" /> <br />
+            <input type="submit" value="Salvar" class="btn btn-success" ng-disabled="!ctl.novoEvento.descricao" />
         </form>
     </div>
 </body>
