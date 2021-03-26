@@ -14,8 +14,10 @@
 .banner .menu {
   width: 80%;
   height: 35px;
-  background-color: black;
   float: left;
   margin-top: 45px;
   margin-left: 10px;
+}
+.banner .menu .btn {
+  margin-left: 5px;
 }

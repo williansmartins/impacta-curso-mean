@@ -4,14 +4,26 @@
   background-color: purple;
   padding: 30px;
 }
+.grid .row div {
+  outline: solid 1px red;
+}
 .grid .formulario {
   width: auto;
-  height: 60px;
+  height: 70px;
   background-color: orange;
+}
+.grid .formulario label {
+  display: block;
+}
+.grid .formulario .codigo {
+  font-size: 30px;
 }
 .grid .tabela {
   width: auto;
-  height: 300px;
-  background-color: blue;
+  height: 250px;
   margin-top: 30px;
+  overflow: auto;
+}
+.grid .tabela .table {
+  background-color: white;
 }
