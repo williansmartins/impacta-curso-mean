@@ -1,0 +1,21 @@
+.banner {
+  width: auto;
+  height: 100px;
+  background-color: green;
+}
+.banner .logotipo {
+  width: 60px;
+  height: 60px;
+  background-color: red;
+  float: left;
+  margin-left: 10px;
+  margin-top: 20px;
+}
+.banner .menu {
+  width: 910px;
+  height: 35px;
+  background-color: black;
+  float: left;
+  margin-top: 45px;
+  margin-left: 10px;
+}
