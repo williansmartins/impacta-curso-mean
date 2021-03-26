@@ -4,7 +4,7 @@
   background-color: green;
 }
 .banner .logotipo {
-  width: 60px;
+  width: 10%;
   height: 60px;
   background-color: red;
   float: left;
@@ -12,7 +12,7 @@
   margin-top: 20px;
 }
 .banner .menu {
-  width: 910px;
+  width: 80%;
   height: 35px;
   background-color: black;
   float: left;

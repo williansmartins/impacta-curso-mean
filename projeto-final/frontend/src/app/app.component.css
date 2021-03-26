@@ -1,6 +1,8 @@
 /* AppComponent's private CSS styles */
 h1 {
   margin-bottom: 0;
+  text-align: center;
+  margin-bottom: 18px;
 }
 nav a {
   padding: 1rem;
@@ -23,3 +25,5 @@ nav a.active {
   Use of this source code is governed by an MIT-style license that
   can be found in the LICENSE file at https://angular.io/license
   */
+
+  
