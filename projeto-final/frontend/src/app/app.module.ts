@@ -8,6 +8,8 @@ import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MessagesComponent } from './messages/messages.component';
+import { AppBannerComponent } from './app-banner/app-banner.component';
+import { AppGridComponent } from './app-grid/app-grid.component';
 // import { MessagesComponent } from './messages/messages.component';
 
 @NgModule({
@@ -16,7 +18,9 @@ import { MessagesComponent } from './messages/messages.component';
     HeroesComponent,
     HeroDetailComponent,
     DashboardComponent,
-    MessagesComponent
+    MessagesComponent,
+    AppBannerComponent,
+    AppGridComponent
   ],
   imports: [
     BrowserModule,
