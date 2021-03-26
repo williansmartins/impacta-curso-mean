@@ -1,0 +1,11 @@
+codigo: string (required)
+descricao: string (required)
+valorCompra: number (required)
+valorImpressao: number (required)
+
+
+
+
+Regra de negócio
+Preço a Vista = ((valor de compra + custo de impressao)*2)
+Preço a Prazo = Valor a vista * 1,17
