@@ -4,9 +4,6 @@
   background-color: purple;
   padding: 30px;
 }
-.grid .row div {
-  outline: solid 1px red;
-}
 .grid .formulario {
   width: auto;
   height: 70px;
@@ -14,9 +11,13 @@
 }
 .grid .formulario label {
   display: block;
+  font-size: 14px;
 }
 .grid .formulario .codigo {
   font-size: 30px;
+}
+.grid .formulario .salvar {
+  margin-top: 21px;
 }
 .grid .tabela {
   width: auto;
