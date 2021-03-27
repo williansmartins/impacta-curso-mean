@@ -10,43 +10,20 @@ import { ProdutoServiceService } from '../produto-service.service';
 export class AppGridComponent implements OnInit {
 
   produtos: Produto[] = [];
-  
   produto: Produto = {
-    codigo: "123",
-    descricao: "ddd",
-    valorCompra: 555,
-    valorImpressao: 666
+    codigo: "0",
+    descricao: "",
+    valorCompra: null,
+    valorImpressao: null
   };
-
-  
   
   constructor(private service: ProdutoServiceService) { }
 
   ngOnInit(): void {
+    this.getAll();
+  }
 
-    // this.produtos = [
-    //   {
-    //     codigo: "123",
-    //     descricao: "aaaa",
-    //     valorCompra: 555,
-    //     valorImpressao: 1234
-    //   },
-  
-    //   {
-    //     codigo: "444",
-    //     descricao: "bbbb",
-    //     valorCompra: 555,
-    //     valorImpressao: 1234
-    //   },
-  
-    //   {
-    //     codigo: "657",
-    //     descricao: "ccccc",
-    //     valorCompra: 555,
-    //     valorImpressao: 1234
-    //   }
-    // ]
-
+  getAll(){
     this.service.getAll().subscribe( (retorno) => {
       this.produtos = retorno;
     });
@@ -54,7 +31,13 @@ export class AppGridComponent implements OnInit {
 
   salvar(){
     console.info(this.produto);
-    
+
+    this.service.create(this.produto).subscribe( (retorno) => {
+      console.info("Inserido com sucesso!!!");
+      console.info(retorno);
+      this.getAll();
+
+    });
   }
 
 }

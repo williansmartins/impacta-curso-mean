@@ -14,6 +14,10 @@ export class ProdutoServiceService {
     return this.http.get<Produto[]>("http://localhost:3200/produtos");
   }
 
+  create(model: Produto): Observable<Produto> {
+    return this.http.post<Produto>("http://localhost:3200/produtos", model);
+  }
+
   // getOne(id: number): Observable<Produto> {
   //   const produto = HEROES.find(h => h.id === id) as Hero;
   //   return of(produto);
