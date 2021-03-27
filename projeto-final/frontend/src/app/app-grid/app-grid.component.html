@@ -35,121 +35,13 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>123321</td>
-                    <td>dsadasdasdasdasdas</td>
-                    <td>R$ 1234,11</td>
-                    <td>R$ 1234,11</td>
-                    <td>R$ 1234,11</td>
-                    <td>R$ 1234,11</td>
-                    <td>
-                        <a class="excluir btn-sm btn btn-danger">excluir</a>
-                        <a class="editar btn-sm btn btn-primary">editar</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>123321</td>
-                    <td>dsadasdasdasdasdas</td>
-                    <td>R$ 1234,11</td>
-                    <td>R$ 1234,11</td>
-                    <td>R$ 1234,11</td>
-                    <td>R$ 1234,11</td>
-                    <td>
-                        <a class="excluir btn-sm btn btn-danger">excluir</a>
-                        <a class="editar btn-sm btn btn-primary">editar</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>123321</td>
-                    <td>dsadasdasdasdasdas</td>
-                    <td>R$ 1234,11</td>
-                    <td>R$ 1234,11</td>
-                    <td>R$ 1234,11</td>
-                    <td>R$ 1234,11</td>
-                    <td>
-                        <a class="excluir btn-sm btn btn-danger">excluir</a>
-                        <a class="editar btn-sm btn btn-primary">editar</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>123321</td>
-                    <td>dsadasdasdasdasdas</td>
-                    <td>R$ 1234,11</td>
-                    <td>R$ 1234,11</td>
-                    <td>R$ 1234,11</td>
-                    <td>R$ 1234,11</td>
-                    <td>
-                        <a class="excluir btn-sm btn btn-danger">excluir</a>
-                        <a class="editar btn-sm btn btn-primary">editar</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>123321</td>
-                    <td>dsadasdasdasdasdas</td>
-                    <td>R$ 1234,11</td>
-                    <td>R$ 1234,11</td>
-                    <td>R$ 1234,11</td>
-                    <td>R$ 1234,11</td>
-                    <td>
-                        <a class="excluir btn-sm btn btn-danger">excluir</a>
-                        <a class="editar btn-sm btn btn-primary">editar</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>123321</td>
-                    <td>dsadasdasdasdasdas</td>
-                    <td>R$ 1234,11</td>
-                    <td>R$ 1234,11</td>
-                    <td>R$ 1234,11</td>
-                    <td>R$ 1234,11</td>
-                    <td>
-                        <a class="excluir btn-sm btn btn-danger">excluir</a>
-                        <a class="editar btn-sm btn btn-primary">editar</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>123321</td>
-                    <td>dsadasdasdasdasdas</td>
-                    <td>R$ 1234,11</td>
-                    <td>R$ 1234,11</td>
-                    <td>R$ 1234,11</td>
-                    <td>R$ 1234,11</td>
-                    <td>
-                        <a class="excluir btn-sm btn btn-danger">excluir</a>
-                        <a class="editar btn-sm btn btn-primary">editar</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>123321</td>
-                    <td>dsadasdasdasdasdas</td>
-                    <td>R$ 1234,11</td>
-                    <td>R$ 1234,11</td>
-                    <td>R$ 1234,11</td>
-                    <td>R$ 1234,11</td>
-                    <td>
-                        <a class="excluir btn-sm btn btn-danger">excluir</a>
-                        <a class="editar btn-sm btn btn-primary">editar</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>123321</td>
-                    <td>dsadasdasdasdasdas</td>
-                    <td>R$ 1234,11</td>
-                    <td>R$ 1234,11</td>
-                    <td>R$ 1234,11</td>
-                    <td>R$ 1234,11</td>
-                    <td>
-                        <a class="excluir btn-sm btn btn-danger">excluir</a>
-                        <a class="editar btn-sm btn btn-primary">editar</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>123321</td>
-                    <td>dsadasdasdasdasdas</td>
-                    <td>R$ 1234,11</td>
-                    <td>R$ 1234,11</td>
-                    <td>R$ 1234,11</td>
-                    <td>R$ 1234,11</td>
+                <tr *ngFor="let produto of produtos">
+                    <td>{{produto.codigo}}</td>
+                    <td>{{produto.descricao}}</td>
+                    <td>{{produto.valorCompra | currency: 'R$ '}}</td>
+                    <td>{{produto.valorImpressao | currency: 'R$ '}}</td>
+                    <td>{{(produto.valorCompra + produto.valorImpressao) * 2 | currency: 'R$ '}}</td>
+                    <td>{{((produto.valorCompra + produto.valorImpressao) * 2) *1.17 | currency: 'R$ '}}</td>
                     <td>
                         <a class="excluir btn-sm btn btn-danger">excluir</a>
                         <a class="editar btn-sm btn btn-primary">editar</a>

@@ -8,16 +8,43 @@ import { Produto } from '../models/Produto';
 })
 export class AppGridComponent implements OnInit {
 
-  produto: Produto ={
+  produtos: Produto[] = [];
+  
+  produto: Produto = {
     codigo: "123",
     descricao: "ddd",
     valorCompra: 555,
     valorImpressao: 666
   };
+
+  
   
   constructor() { }
 
   ngOnInit(): void {
+
+    this.produtos = [
+      {
+        codigo: "123",
+        descricao: "aaaa",
+        valorCompra: 555,
+        valorImpressao: 1234
+      },
+  
+      {
+        codigo: "444",
+        descricao: "bbbb",
+        valorCompra: 555,
+        valorImpressao: 1234
+      },
+  
+      {
+        codigo: "657",
+        descricao: "ccccc",
+        valorCompra: 555,
+        valorImpressao: 1234
+      }
+    ]
   }
 
   salvar(){
