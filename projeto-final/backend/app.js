@@ -240,7 +240,7 @@ app.delete('/produtos/:id', function (request, response) {
           response.json(erro);
         }
         else {
-          response.send('removido'); 
+          response.json(resultado); 
         }
       });
     }

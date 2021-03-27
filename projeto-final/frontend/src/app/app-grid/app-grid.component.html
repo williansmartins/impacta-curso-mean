@@ -13,7 +13,7 @@
             <input class="form-control" [(ngModel)]="produto.valorCompra"/>
           </div>
           <div class="col-2">
-            <label>Valor da Impressão:</label>
+            <label>Valor da impressão:</label>
             <input class="form-control" [(ngModel)]="produto.valorImpressao"/>
           </div>
           <div class="col-2">
@@ -43,8 +43,8 @@
                     <td>{{(produto.valorCompra + produto.valorImpressao) * 2 | currency: 'R$ '}}</td>
                     <td>{{((produto.valorCompra + produto.valorImpressao) * 2) *1.17 | currency: 'R$ '}}</td>
                     <td>
-                        <a class="excluir btn-sm btn btn-danger">excluir</a>
-                        <a class="editar btn-sm btn btn-primary">editar</a>
+                        <a class="excluir btn-sm btn btn-danger" (click)="delete(produto)">excluir</a>
+                        <a class="editar btn-sm btn btn-primary" (click)="editar(produto)">editar</a>
                     </td>
                 </tr>
             </tbody>

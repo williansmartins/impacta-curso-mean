@@ -11,6 +11,7 @@ export class AppGridComponent implements OnInit {
 
   produtos: Produto[] = [];
   produto: Produto = {
+    _id: "0",
     codigo: "0",
     descricao: "",
     valorCompra: null,
@@ -26,18 +27,37 @@ export class AppGridComponent implements OnInit {
   getAll(){
     this.service.getAll().subscribe( (retorno) => {
       this.produtos = retorno;
+      console.info(retorno[0]);
     });
   }
 
   salvar(){
-    console.info(this.produto);
+    if(this.produto._id){
+      this.service.update(this.produto).subscribe( (retorno) => {
+        console.info("Atualizado com sucesso!!!");
+        console.info(retorno);
+        this.getAll();
+      });
+    }else{
+      this.service.create(this.produto).subscribe( (retorno) => {
+        console.info("Inserido com sucesso!!!");
+        console.info(retorno);
+        this.getAll();
+      });
+    }
+  }
 
-    this.service.create(this.produto).subscribe( (retorno) => {
-      console.info("Inserido com sucesso!!!");
-      console.info(retorno);
+  delete(produto){
+    this.service.delete(produto._id).subscribe( (retorno) => {
       this.getAll();
-
+    },
+    (error: any) => {
+        console.log(error)
     });
+  }
+
+  editar(produto){
+    this.produto = produto;
   }
 
 }

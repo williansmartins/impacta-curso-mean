@@ -18,8 +18,12 @@ export class ProdutoServiceService {
     return this.http.post<Produto>("http://localhost:3200/produtos", model);
   }
 
-  // getOne(id: number): Observable<Produto> {
-  //   const produto = HEROES.find(h => h.id === id) as Hero;
-  //   return of(produto);
-  // }
+  delete(id: String){
+    return this.http.delete("http://localhost:3200/produtos/" + id);
+  }
+
+  update(model: Produto): Observable<Produto> {
+    return this.http.put<Produto>("http://localhost:3200/produtos/" + model._id, model);
+  }
+
 }
