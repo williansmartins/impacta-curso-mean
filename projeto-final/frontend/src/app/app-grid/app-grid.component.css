@@ -1,13 +1,13 @@
 .grid {
   width: auto;
   height: 400px;
-  background-color: purple;
   padding: 30px;
 }
 .grid .formulario {
   width: auto;
-  height: 70px;
-  background-color: orange;
+  height: 80px;
+  background-color: #f2f2f2;
+  padding: 6px;
 }
 .grid .formulario label {
   display: block;
