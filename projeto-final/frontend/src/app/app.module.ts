@@ -11,6 +11,7 @@ import { MessagesComponent } from './messages/messages.component';
 import { AppBannerComponent } from './app-banner/app-banner.component';
 import { AppGridComponent } from './app-grid/app-grid.component';
 // import { MessagesComponent } from './messages/messages.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { AppGridComponent } from './app-grid/app-grid.component';
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

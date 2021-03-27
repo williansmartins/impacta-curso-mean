@@ -7,5 +7,5 @@ module.exports = function (app) {
         valorCompra: { type: Number, required: true},
         valorImpressao: { type: Number, required: true},
     });
-    return mongoose.model('produtos', produto);
+    return mongoose.model('produtos', produto); 
 };
