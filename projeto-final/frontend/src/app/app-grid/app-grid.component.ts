@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Produto } from '../models/Produto';
 
 @Component({
   selector: 'app-grid',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppGridComponent implements OnInit {
 
+  produto: Produto ={
+    codigo: "123",
+    descricao: "ddd",
+    valorCompra: 555,
+    valorImpressao: 666
+  };
+  
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  salvar(){
+    console.info(this.produto);
+    
   }
 
 }
